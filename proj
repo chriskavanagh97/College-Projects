@@ -1,0 +1,91 @@
+def distance(strand_a, strand_b):
+    return sum(i != j for i, j in zip(strand_a, strand_b))
+
+========================================================================================================================
+
+
+
+def verify(isbn):
+    isbn = list(isbn.replace('-', ''))
+
+    if len(isbn) < 10:
+        return False
+
+    if isbn[-1].upper() == 'X':
+        isbn[-1] = '10'
+
+    total = 0
+    for i in range(10):
+        try:
+            total += int(isbn[i])*(10-i)
+        except ValueError:
+            return False
+
+    return total % 11 == 0
+    
+    ============================================================================================================================================
+    def is_pangram(sentence):
+    
+    pangram ={'q','w','e','r','s','t','y','u','i','o','p','a','s','d','f','g','h','j','k','l','z','x','c','v','b','n','m'}
+    
+    for letters in pangram:
+        if letters not in sentence.lower():
+            return False
+        continue 
+    return True
+    
+    =======================================================================================================================
+    
+    
+def hey(phrase):
+    if phrase.isupper() and phrase.endswith('?'):
+        return "Calm down, I know what I'm doing!"
+    elif phrase.isupper():
+        return "Whoa, chill out!"
+    elif phrase.strip().endswith('?'):
+        return 'Sure.'
+    elif phrase.isspace() or len(phrase) == 0:
+        return 'Fine. Be that way!'
+    else:
+        return'Whatever.'
+ 
+ ================================================================================================================================
+ 
+ def distance(strand_a, strand_b):
+    return sum(i != j for i, j in zip(strand_a, strand_b))
+
+
+  ======================================================================================================
+  
+  def is_armstrong(number):
+    n = str(number)
+    return number == sum(int(d)**len(n) for d in n)
+
+
+============================================================================================================================
+YACHT = lambda d: 50  if len (set(d)) == 1 else 0
+ONES =lambda d: sum([x for x in d if x == 1])
+TWOS = lambda d: sum([x for x in d if x == 2])
+THREES = lambda d: sum([x for x in d if x == 3])
+FOURS = lambda d: sum([x for x in d if x == 4])
+FIVES = lambda d: sum([x for x in d if x == 5])
+SIXES = lambda d: sum([x for x in d if x == 6]) 
+FULL_HOUSE = lambda d: sum(d) if len(set(d)) == 2 and any([d.count(x)==3 for x in set(d)]) else 0
+FOUR_OF_A_KIND = lambda d: sum(x * 4 for x in set(d) if d.count(x) > 3)
+LITTLE_STRAIGHT = lambda d:30 if len(set(d)) == 5 and sum(d) == 15 else 0
+BIG_STRAIGHT = lambda d:30 if len(set(d))== 5 and sum(d) == 20 else 0
+CHOICE = lambda d: sum(d)
+
+
+def score(dice, category):
+    return category(dice)
+
+
+
+
+
+
+ 
+    
+    
+    
