@@ -86,6 +86,22 @@ def verify(isbn):
             return False
         continue 
     return True
+   
+   
+   ===================================================================================================================================
+    
+    def raindrops(number):
+   
+    statement = ''
+    if number % 3 == 0:
+        statement += 'Pling'
+    if number % 5 == 0:
+        statement += 'Plang'
+    if number % 7 == 0:
+        statement += 'Plong'
+    if len(statement) == 0:
+        statement += str(number)
+    return statement
     
     =======================================================================================================================
     
@@ -133,10 +149,26 @@ CHOICE = lambda d: sum(d)
 def score(dice, category):
     return category(dice)
 
+=====================================================================================================================================
 
 
+from collections import Counter
+from re import findall
+
+def word_count(phrase):
+	
+	return Counter(findall(r'[^\W_]+', phrase.lower()))
+
+========================================================================================================================
+
+from collections import Counter
+from re import findall
+
+def word_count(phrase):
+	phrase = str(phrase.replace('_', '.'))
 
 
+	return Counter(findall(r'[\w]+', phrase.lower()))
 
  
     
