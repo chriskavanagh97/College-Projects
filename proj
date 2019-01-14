@@ -1,9 +1,62 @@
 def distance(strand_a, strand_b):
     return sum(i != j for i, j in zip(strand_a, strand_b))
+    
+    ========================================================================================================
+def abbreviate(text):
+    titles_only = (c for c in text.title() if c.isupper())
+    return ''.join(titles_only)
+
+
 
 ========================================================================================================================
+import re
+re.search('fox', 'The quick brown fox jumped over the lazy dog')
+<re.match object; span(16, 19), match ='fox'>
+
+re.search('f[aeiou]x', 'The quick brown fox jumped over the lazy dog')
+<re.match object; span(16, 19), match ='fox'>
+
+re.search('f[^aeiou]x', 'The quick brown flx jumped over the lazy dog')~~~~~~ Everything that is not a vowel ~~~~~~~
+<re.match object; span(16, 19), match ='flx'>
+
+re.search('f[m-s]x', 'The quick brown fox jumped over the lazy dog')
+<re.match object; span(16, 19), match ='fox'>
+
+re.search('f.x', 'The quick brown fox jumped over the lazy dog')
+<re.match object; span(16, 19), match ='fox'>
+
+re.search('f[aeiou] + x', 'The quick brown fooox jumped over the lazy dog')
+<re.match object; span(16, 21), match ='fooox'>
+
+re.search('f[aeiou]*x', 'The quick brown fx jumped over the lazy dog')
+<re.match object; span(16, 19), match ='fx'>
 
 
+re.search('.+x:', '1726:3847:2938:3049')
+<re.match object; span(0, 15), match ='1726:3847:2938:'>
+
+re.search('\d+x:', '1726:3847:2938:3049')
+<re.match object; span(0, 5), match ='1726:'>
+
+
+re.search('(ab)*', 'ababababhkjsfada')
+<re.match object; span(0, 8), match ='abababab'>
+
+
+re.search('(r'\d{2,3}-[A-Z]{1,2}-\d+', '182-D-24354')
+<re.match object; span(0, 8), match ='182-D-24354'>
+
+regex101
+
+re.search('(r'^(\d{2,3})-([A-Z]{1,2})-(\d{1,7})$', '182-D-24354')
+<re.match object; span(0, 8), match ='182-D-24354'>
+
+
+m.group(1)
+'181'
+
+sub(r'([A-Z])\1+, lambda m: str(len(m.group())) + m.group(1), s)S
+=========================================================================================================================
 
 def verify(isbn):
     isbn = list(isbn.replace('-', ''))
