@@ -63,6 +63,9 @@ m.group(1)
 '181'
 
 sub(r'([A-Z])\1+, lambda m: str(len(m.group())) + m.group(1), s)S
+
+
+\bword\b
 =========================================================================================================================
 
 def verify(isbn):
@@ -155,7 +158,18 @@ CHOICE = lambda d: sum(d)
 
 def score(dice, category):
     return category(dice)
+====================================================================================================================================
 
+from re import sub
+
+
+def encode(s):
+    return sub(r'(.)\1+', lambda x: str(len(x.group(0))) + x.group(1), s)
+
+
+def decode(s):
+    return sub(r'(\d+)(\D)', lambda x: x.group(2) * int(x.group(1)), s)
+    
 =====================================================================================================================================
 
 
@@ -176,8 +190,47 @@ def word_count(phrase):
 
 
 	return Counter(findall(r'[\w]+', phrase.lower()))
+==================================================================================================================================
+import re
+
+
+def translate_word(word):
+    if re.match('^[xy][^aeiou]', word):
+        return word + 'ay'
+    return re.sub(r'^([^aeiouq]*(?:qu)?)([aeiou])(.*)', r'\2\3\1ay', word)
+
+
+def translate(phrase):
+    return ' '.join([translate_word(word) for word in phrase.split(' ')])
+
+==================================================================================================================================
+from functools import reduce
+
+
+def product(string):
+    return reduce(lambda x, y: x*y, [int(num) for num in string])
+
+
+def largest_product(string, span):
+    if span == 0:
+        return 1
+    elif span < 1:
+        raise ValueError
+    return max(product(string[i:i+span]) for i in range(0, len(string)-span+1))
 
  
-    
+   ========================================================================================================================
+   
+   from datetime import timedelta
+
+Gs = timedelta(seconds=10**9)
+
+def add_gigasecond(birthday):
+	'''(date) -> date
+	
+	Return the date that someone turned or will celebrate their 1 Gs
+	anniversary
+	'''
+	return birthday + Gs
     
     
