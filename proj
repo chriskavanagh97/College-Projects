@@ -7,7 +7,37 @@ def abbreviate(text):
     return ''.join(titles_only)
 
 =======================================================================================================================
+def only_odds(list):
+    oddList = []
+    for n in list:
+        if n % 2 != 0:
+            oddList.append(n)
+    return oddList
 
+def second_to_last(list):
+    if len(list) > 1:
+        return list[- 2]
+    else:
+        raise ValueError
+
+def dedup(list):
+    dedupList = []
+    for element in list:
+        if element not in dedupList:
+            dedupList.append(element)
+    return dedupList
+
+def dedup_consecutive(list):
+    dedup_con_list = []
+    for i in range(len(list)-1):
+        if i != len(list) - 1:
+            if list[i] != list[i+1]:
+                dedup_con_list.append(list[i])
+    dedup_con_list.append(list[len(list)-1])
+    return dedup_con_list
+    
+    
+    =============================================================================================================================
 import re
 def is_isogram(string):
     string = [x for x in string.lower() if x.isalpha()]
