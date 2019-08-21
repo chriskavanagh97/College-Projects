@@ -5,6 +5,36 @@ def distance(strand_a, strand_b):
 def abbreviate(text):
     titles_only = (c for c in text.title() if c.isupper())
     return ''.join(titles_only)
+    
+    	=============================================================================================================
+ef double_digits(scores):
+    return [x for x in scores if x > 9]
+
+def spread(values):
+    return [min(values), max(values)]
+
+def is_valid_flight_number(flight_number):
+    return re.fullmatch(r'[A-Z]{2} ?\d{1,4}', flight_number) is not None
+
+def non_decreasing(values):
+    return values == sorted(values)
+
+def median(numbers):
+    length = len(numbers)
+    if length % 2 == 0:
+        raise ValueError("Only lists with an odd number of elements supported")
+    else:
+        return sorted(numbers)[length // 2]
+
+def luhn_check(card_number):
+    card_number = re.sub(r' ', '', card_number)
+    if re.fullmatch(r'\d{16}', card_number):
+        digits = list(map(int, card_number))[::-1]
+        digits = [2 * digit if i % 2 == 1  else digit for i, digit in enumerate(digits)]
+        digits = [d - 9 if d > 9 else d for d in digits]
+        return sum(digits) % 10 == 0
+    else:
+        return False
 
 =======================================================================================================================
 def only_odds(list):
