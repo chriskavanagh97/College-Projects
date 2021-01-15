@@ -1,0 +1,296 @@
+# Python-Practice
+
+def distance(strand_a, strand_b):
+    return sum(i != j for i, j in zip(strand_a, strand_b))
+    
+    ========================================================================================================
+def abbreviate(text):
+    titles_only = (c for c in text.title() if c.isupper())
+    return ''.join(titles_only)
+    
+    	=============================================================================================================
+ef double_digits(scores):
+    return [x for x in scores if x > 9]
+
+def spread(values):
+    return [min(values), max(values)]
+
+def is_valid_flight_number(flight_number):
+    return re.fullmatch(r'[A-Z]{2} ?\d{1,4}', flight_number) is not None
+
+def non_decreasing(values):
+    return values == sorted(values)
+
+def median(numbers):
+    length = len(numbers)
+    if length % 2 == 0:
+        raise ValueError("Only lists with an odd number of elements supported")
+    else:
+        return sorted(numbers)[length // 2]
+
+def luhn_check(card_number):
+    card_number = re.sub(r' ', '', card_number)
+    if re.fullmatch(r'\d{16}', card_number):
+        digits = list(map(int, card_number))[::-1]
+        digits = [2 * digit if i % 2 == 1  else digit for i, digit in enumerate(digits)]
+        digits = [d - 9 if d > 9 else d for d in digits]
+        return sum(digits) % 10 == 0
+    else:
+        return False
+
+=======================================================================================================================
+def only_odds(list):
+    oddList = []
+    for n in list:
+        if n % 2 != 0:
+            oddList.append(n)
+    return oddList
+
+def second_to_last(list):
+    if len(list) > 1:
+        return list[- 2]
+    else:
+        raise ValueError
+
+def dedup(list):
+    dedupList = []
+    for element in list:
+        if element not in dedupList:
+            dedupList.append(element)
+    return dedupList
+
+def dedup_consecutive(list):
+    dedup_con_list = []
+    for i in range(len(list)-1):
+        if i != len(list) - 1:
+            if list[i] != list[i+1]:
+                dedup_con_list.append(list[i])
+    dedup_con_list.append(list[len(list)-1])
+    return dedup_con_list
+    
+    
+    =============================================================================================================================
+import re
+def is_isogram(string):
+    string = [x for x in string.lower() if x.isalpha()]
+    return len(string) == len(set(string))
+
+    
+
+========================================================================================================================
+import re
+re.search('fox', 'The quick brown fox jumped over the lazy dog')
+<re.match object; span(16, 19), match ='fox'>
+
+re.search('f[aeiou]x', 'The quick brown fox jumped over the lazy dog')
+<re.match object; span(16, 19), match ='fox'>
+
+re.search('f[^aeiou]x', 'The quick brown flx jumped over the lazy dog')~~~~~~ Everything that is not a vowel ~~~~~~~
+<re.match object; span(16, 19), match ='flx'>
+
+re.search('f[m-s]x', 'The quick brown fox jumped over the lazy dog')
+<re.match object; span(16, 19), match ='fox'>
+
+re.search('f.x', 'The quick brown fox jumped over the lazy dog')
+<re.match object; span(16, 19), match ='fox'>
+
+re.search('f[aeiou] + x', 'The quick brown fooox jumped over the lazy dog')
+<re.match object; span(16, 21), match ='fooox'>
+
+re.search('f[aeiou]*x', 'The quick brown fx jumped over the lazy dog')
+<re.match object; span(16, 19), match ='fx'>
+
+
+re.search('.+x:', '1726:3847:2938:3049')
+<re.match object; span(0, 15), match ='1726:3847:2938:'>
+
+re.search('\d+x:', '1726:3847:2938:3049')
+<re.match object; span(0, 5), match ='1726:'>
+
+
+re.search('(ab)*', 'ababababhkjsfada')
+<re.match object; span(0, 8), match ='abababab'>
+
+
+re.search('(r'\d{2,3}-[A-Z]{1,2}-\d+', '182-D-24354')
+<re.match object; span(0, 8), match ='182-D-24354'>
+
+regex101
+
+re.search('(r'^(\d{2,3})-([A-Z]{1,2})-(\d{1,7})$', '182-D-24354')
+<re.match object; span(0, 8), match ='182-D-24354'>
+
+
+m.group(1)
+'181'
+
+sub(r'([A-Z])\1+, lambda m: str(len(m.group())) + m.group(1), s)S
+
+
+\bword\b
+=========================================================================================================================
+
+def verify(isbn):
+    isbn = list(isbn.replace('-', ''))
+
+    if len(isbn) < 10:
+        return False
+
+    if isbn[-1].upper() == 'X':
+        isbn[-1] = '10'
+
+    total = 0
+    for i in range(10):
+        try:
+            total += int(isbn[i])*(10-i)
+        except ValueError:
+            return False
+
+    return total % 11 == 0
+    
+    ============================================================================================================================================
+    def is_pangram(sentence):
+    
+    pangram ={'q','w','e','r','s','t','y','u','i','o','p','a','s','d','f','g','h','j','k','l','z','x','c','v','b','n','m'}
+    
+    for letters in pangram:
+        if letters not in sentence.lower():
+            return False
+        continue 
+    return True
+   
+   
+   ===================================================================================================================================
+    
+    def raindrops(number):
+   
+    statement = ''
+    if number % 3 == 0:
+        statement += 'Pling'
+    if number % 5 == 0:
+        statement += 'Plang'
+    if number % 7 == 0:
+        statement += 'Plong'
+    if len(statement) == 0:
+        statement += str(number)
+    return statement
+    
+    =======================================================================================================================
+    
+    
+def hey(phrase):
+    if phrase.isupper() and phrase.endswith('?'):
+        return "Calm down, I know what I'm doing!"
+    elif phrase.isupper():
+        return "Whoa, chill out!"
+    elif phrase.strip().endswith('?'):
+        return 'Sure.'
+    elif phrase.isspace() or len(phrase) == 0:
+        return 'Fine. Be that way!'
+    else:
+        return'Whatever.'
+ 
+ ================================================================================================================================
+ 
+ def distance(strand_a, strand_b):
+    return sum(i != j for i, j in zip(strand_a, strand_b))
+
+
+  ======================================================================================================
+  
+  def is_armstrong(number):
+    n = str(number)
+    return number == sum(int(d)**len(n) for d in n)
+
+
+============================================================================================================================
+YACHT = lambda d: 50  if len (set(d)) == 1 else 0
+ONES =lambda d: sum([x for x in d if x == 1])
+TWOS = lambda d: sum([x for x in d if x == 2])
+THREES = lambda d: sum([x for x in d if x == 3])
+FOURS = lambda d: sum([x for x in d if x == 4])
+FIVES = lambda d: sum([x for x in d if x == 5])
+SIXES = lambda d: sum([x for x in d if x == 6]) 
+FULL_HOUSE = lambda d: sum(d) if len(set(d)) == 2 and any([d.count(x)==3 for x in set(d)]) else 0
+FOUR_OF_A_KIND = lambda d: sum(x * 4 for x in set(d) if d.count(x) > 3)
+LITTLE_STRAIGHT = lambda d:30 if len(set(d)) == 5 and sum(d) == 15 else 0
+BIG_STRAIGHT = lambda d:30 if len(set(d))== 5 and sum(d) == 20 else 0
+CHOICE = lambda d: sum(d)
+
+
+def score(dice, category):
+    return category(dice)
+====================================================================================================================================
+
+from re import sub
+
+
+def encode(s):
+    return sub(r'(.)\1+', lambda x: str(len(x.group(0))) + x.group(1), s)
+
+
+def decode(s):
+    return sub(r'(\d+)(\D)', lambda x: x.group(2) * int(x.group(1)), s)
+    
+=====================================================================================================================================
+
+
+from collections import Counter
+from re import findall
+
+def word_count(phrase):
+	
+	return Counter(findall(r'[^\W_]+', phrase.lower()))
+
+========================================================================================================================
+
+from collections import Counter
+from re import findall
+
+def word_count(phrase):
+	phrase = str(phrase.replace('_', '.'))
+
+
+	return Counter(findall(r'[\w]+', phrase.lower()))
+==================================================================================================================================
+import re
+
+
+def translate_word(word):
+    if re.match('^[xy][^aeiou]', word):
+        return word + 'ay'
+    return re.sub(r'^([^aeiouq]*(?:qu)?)([aeiou])(.*)', r'\2\3\1ay', word)
+
+
+def translate(phrase):
+    return ' '.join([translate_word(word) for word in phrase.split(' ')])
+
+==================================================================================================================================
+from functools import reduce
+
+
+def product(string):
+    return reduce(lambda x, y: x*y, [int(num) for num in string])
+
+
+def largest_product(string, span):
+    if span == 0:
+        return 1
+    elif span < 1:
+        raise ValueError
+    return max(product(string[i:i+span]) for i in range(0, len(string)-span+1))
+
+ 
+   ========================================================================================================================
+   
+   from datetime import timedelta
+
+Gs = timedelta(seconds=10**9)
+
+def add_gigasecond(birthday):
+	'''(date) -> date
+	
+	Return the date that someone turned or will celebrate their 1 Gs
+	anniversary
+	'''
+	return birthday + Gs
